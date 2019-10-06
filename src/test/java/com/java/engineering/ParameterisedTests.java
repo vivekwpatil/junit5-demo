@@ -24,7 +24,6 @@ public class ParameterisedTests {
     @ParameterizedTest
     @MethodSource("createWords")
     void withMethodSource(String word) { }
-
     private static Stream<String> createWords() {
         return Stream.of("Hello", "Junit");
     }
@@ -45,6 +44,12 @@ public class ParameterisedTests {
     @CsvFileSource(resources = "/test-data.csv")
     void sum(int a, int b, int sum) {
         assertEquals(sum, a + b);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    void isBlank_ShouldReturnTrueForNullInputs(String input) {
+        assertTrue(Strings.isBlank(input));
     }
 
 }
